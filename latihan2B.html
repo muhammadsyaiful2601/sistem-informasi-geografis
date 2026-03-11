@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Peta Psdku Tanah Datar</title>
+    <link rel="stylesheet" href="dist/leaflet.css" />
+    <script src="dist/leaflet.js"></script>
+    <style>
+      #map {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+
+    <script>
+      var map = L.map("map").setView([-0.504861853, 100.779074], 17);
+
+      L.tileLayer(
+        "https://api.maptiler.com/maps/backdrop-v4/{z}/{x}/{y}.png?key=VMd1gieKnl5V7Z3FAPeW",
+        {
+          tileSize: 512,
+          zoomOffset: -1,
+          minZoom: 1,
+          attribution:
+            '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>',
+        },
+      ).addTo(map);
+      var lokasi = [
+        [
+          -0.5048618530559519,
+          100.779074046302,
+          "gambar/school.png",
+          "PSDKU Tanah Datar",
+        ],
+        [
+          -0.5072310434982953,
+          100.78084579394502,
+          "gambar/graduate.png",
+          "SMAN 2 Lintau",
+        ],
+        [
+          -0.5063466774322939,
+          100.7784020553943,
+          "gambar/hospital.png",
+          "Rumah Sakit (Req Adil)",
+        ],
+        [
+          -0.5037633969178695,
+          100.778774434602,
+          "gambar/graduate.png",
+          "SMKN 1 Lintau",
+        ],
+        [
+          -0.5024833926796046,
+          100.77761074957786,
+          "gambar/workshop.png",
+          "Bengkel Motor Acing",
+        ],
+        [
+          -0.5053016757160439,
+          100.77856458139544,
+          "gambar/mosque.png",
+          "Masjid Nurul",
+        ],
+        [
+          -0.5049727826283888,
+          100.77800394641729,
+          "gambar/furniture.png",
+          "Dzaza Furniture",
+        ],
+      ];
+
+      for (var i = 0; i < lokasi.length; i++) {
+        // Membuat icon kustom
+        var tIcon = L.icon({
+          iconUrl: lokasi[i][2],
+          iconSize: [40, 40], // Ukuran kotak agar tidak gepeng
+          iconAnchor: [20, 40], // Titik tumpu ikon (tengah bawah)
+          popupAnchor: [0, -40], // Posisi jendela informasi (di atas ikon)
+        });
+
+        // Menambahkan marker ke peta
+        L.marker([lokasi[i][0], lokasi[i][1]], {
+          icon: tIcon,
+        })
+          .addTo(map)
+          .bindPopup("<b>" + lokasi[i][3] + "</b>"); // Munculkan teks saat diklik
+      }
+    </script>
+  </body>
+</html>
