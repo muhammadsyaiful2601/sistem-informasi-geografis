@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Peta Psdku Tanah Datar</title>
+    <link rel="stylesheet" href="dist/leaflet.css" />
+    <script src="dist/leaflet.js"></script>
+    <style>
+      #map {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+  </body>
+  <script>
+    var map = L.map("map").setView(
+      [-0.5057692775534901, 100.77878783368847],
+      17,
+    );
+    L.tileLayer(
+      "https://api.maptiler.com/maps/outdoor-v4/{z}/{x}/{y}.png?key=VMd1gieKnl5V7Z3FAPeW",
+      {
+        tileSize: 512,
+        zoomOffset: -1,
+        minZoom: 1,
+        attribution:
+          '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>',
+      },
+    ).addTo(map);
+
+    var info_psdku = `<p style = "text-align: center;"><img src="gambar/psdkupnpkampus2.jpg" width ="250px" height = "100px"/></P>
+        <p>Politeknik Negeri Padang (PNP) Kampus Tanah Datar merupakan wujud nyata komitmen PNP dalam memperluas akses pendidikan tinggi vokasi berkualitas di Sumatera Barat.
+         Berlokasi di Kabupaten Tanah Datar, kampus ini hadir untuk mencetak tenaga kerja profesional, terampil, 
+         dan siap pakai yang mampu menjawab tantangan industri di tingkat regional maupun nasional.
+         <p><a href ="https://ti.pnp.ac.id/">Baca Selengkapnya</a></p>`;
+
+    var marker = L.marker([-0.5057692775534901, 100.77878783368847])
+      .bindPopup(info_psdku)
+      .addTo(map);
+    var marker1 = L.marker([-0.5049573435577175, 100.77800744455611])
+      .bindTooltip("Dzaza furniture")
+      .addTo(map);
+    //garis jalan ke lokasi psdku
+    var lokasijalan = [
+      [-0.47136553854383295, 100.76220607910898], // Titik Awal
+      [-0.4718348291996974, 100.7622429145445], // Simpang 1
+      [-0.47318996047388745, 100.76111649869767], // Simpang 2
+      [-0.48422921147118786, 100.77128105645454], // Berbelok 1
+      [-0.4920185143235637, 100.77408622088036], // Berbelok 2
+      [-0.49618328979874926, 100.77458710001153], // Berbelok 3
+      [-0.5007545247270448, 100.77673705942307], // Berbelok 4
+      [-0.5059731592006537, 100.77844799642455], // Simpang Terakhir
+      [-0.5057863236758112, 100.77878422230329], // Koordinat Akhir
+    ];
+    L.polyline(lokasijalan, { color: "red" }).addTo(map);
+
+    L.tooltip({ permanent: true })
+      .setContent(
+        `<img src="gambar/lokasi-psdku.jpg" width="16" height="16" /> <br /> Lokasi Psdku Tanah Datar`,
+      )
+      .setLatLng([-0.4920185143235637, 100.77408622088036])
+      .addTo(map);
+  </script>
+</html>
