@@ -25,7 +25,7 @@
       17,
     );
     L.tileLayer(
-      "https://api.maptiler.com/maps/outdoor-v4/{z}/{x}/{y}.png?key=VMd1gieKnl5V7Z3FAPeW",
+      "https://api.maptiler.com/maps/satellite-v4/256/{z}/{x}/{y}.jpg?key=VMd1gieKnl5V7Z3FAPeW",
       {
         tileSize: 512,
         zoomOffset: -1,
@@ -47,9 +47,13 @@
     var marker1 = L.marker([-0.5049573435577175, 100.77800744455611])
       .bindTooltip("Dzaza furniture")
       .addTo(map);
+    var rumah = L.marker([-0.47136553854383295, 100.76220607910898])
+      .bindPopup("Titik Awal")
+      .addTo(map);
     //garis jalan ke lokasi psdku
     var lokasijalan = [
       [-0.47136553854383295, 100.76220607910898], // Titik Awal
+      [-0.4714363056103521, 100.76211286531651],
       [-0.4718348291996974, 100.7622429145445], // Simpang 1
       [-0.47318996047388745, 100.76111649869767], // Simpang 2
       [-0.48422921147118786, 100.77128105645454], // Berbelok 1
@@ -63,7 +67,7 @@
 
     L.tooltip({ permanent: true })
       .setContent(
-        `<img src="gambar/lokasi-psdku.jpg" width="16" height="16" /> <br /> Lokasi Psdku Tanah Datar`,
+        `<img src="gambar/cycling.png" width="16" height="16" /> <br /> Lokasi Psdku Tanah Datar`,
       )
       .setLatLng([-0.4920185143235637, 100.77408622088036])
       .addTo(map);
