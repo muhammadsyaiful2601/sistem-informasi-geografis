@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Peta Psdku Tanah Datar</title>
+    <link rel="stylesheet" href="dist/leaflet.css" />
+    <script src="dist/leaflet.js"></script>
+    <style>
+      #map {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+  </body>
+  <script>
+    var map = L.map("map").setView(
+      [-0.4735163063371655, 100.76139857438935],
+      17,
+    );
+    L.tileLayer(
+      "https://api.maptiler.com/maps/toner-v2/{z}/{x}/{y}.png?key=VMd1gieKnl5V7Z3FAPeW",
+      {
+        tileSize: 512,
+        zoomOffset: -1,
+        minZoom: 1,
+        attribution:
+          '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>',
+      },
+    ).addTo(map);
+
+    var deskripsi = `<p style = "text-align: center;"><img src="gambar/sma 2.jpg" width ="250px" height = "100px"/></P>
+        <p>SMA Negeri 2 Lintau Buo merupakan salah satu sekolah menengah atas yang terletak di Kabupaten Tanah Datar, Sumatera Barat. Sekolah ini dikenal sebagai lembaga pendidikan yang menyediakan lingkungan belajar yang kondusif dan mendukung perkembangan akademik serta karakter siswa. Dengan fasilitas yang memadai dan tenaga pengajar yang berkualitas, SMA Negeri 2 Lintau Buo berkomitmen untuk mencetak generasi muda yang cerdas, kreatif, dan siap menghadapi tantangan masa depan.</p>
+        <p><a href ="https://sman2lintau.sch.id/">Baca Selengkapnya</a></p>`;
+
+    var deskripsi_psdku = `<p style = "text-align: center;"><img src="gambar/psdkupnpkampus2.jpg" width ="250px" height = "100px"/></P>
+        <p>Politeknik Negeri Padang (PNP) Kampus Tanah Datar merupakan wujud nyata komitmen PNP dalam memperluas akses pendidikan tinggi vokasi berkualitas di Sumatera Barat.
+         Berlokasi di Kabupaten Tanah Datar, kampus ini hadir untuk mencetak tenaga kerja profesional, terampil, 
+         dan siap pakai yang mampu menjawab tantangan industri di tingkat regional maupun nasional.</p>
+         <p><a href ="https://ti.pnp.ac.id/">Baca Selengkapnya</a></p>`;
+
+    var marker = L.marker([-0.5080308683886925, 100.78076711882625])
+      .bindPopup(deskripsi)
+      .addTo(map);
+    //garis jalan ke lokasi psdku
+    var titikawal = L.marker([-0.47131834688465607, 100.76216576657832])
+      .bindPopup("Titik Awal")
+      .addTo(map);
+    //variabel untuk membuat garis jalan
+    var jalan = [
+        [-0.47131834688465607, 100.76216576657832], //myhome
+        [-0.4714338792729301, 100.76211165465088], //keluar gerbang
+        [-0.47181411243308485, 100.76224912821314], //jalan sampai simpang 1
+        [-0.4727177126956795, 100.76153092760454],
+        [-0.4729745186082698, 100.76137979892754],
+        [-0.47320496734855033, 100.76113166418374],//simpang smp
+        [-0.4734580573123159, 100.7613303450403],
+        [-0.4740850515000541, 100.76185185067133],
+        [-0.47505237533402445, 100.76271857470017],
+        [-0.4754412014192038, 100.76298707358647],
+        [-0.4757696444896589, 100.76325657247277],
+        [-0.476098087560114, 100.76352607135907],
+        [-0.4764265306305691, 100.76379557024537],
+        [-0.4767549737010242, 100.76406506913167],
+        [-0.4770834167714793, 100.76433456801797],
+        [-0.4774118598419344, 100.76460406690427],
+        [-0.4777403029123895, 100.76487356579057],
+        [-0.4780687459828446, 100.76514306467687],
+        [-0.4783971890532997, 100.76541256356317],
+        [-0.4787256321237548, 100.76568206244947],
+        [-0.4790540751942099, 100.76595156133577],
+        [-0.479382518264665, 100.76622106022207],
+        [-0.4797109613351201, 100.76649055910837],
+        [-0.4800394044055752, 100.76676005799467],
+        [-0.4803678474760303, 100.76702955688097],
+        [-0.4806962905464854, 100.76729905576727],
+        [-0.4810247336169405, 100.76756855465357],
+        [-0.4813531766873956, 100.76783805353987],
+    ];
+      
+    L.polyline(jalan, { color: "red" }).addTo(map);
+
+    //variabel untuk membuat area poligon
+    var area = [
+      [-0.5074579710280153, 100.7799139471276], // Titik Awal
+      [-0.5069981564147239, 100.78098158476709], // titk ke dua
+      [-0.5080443376369295, 100.78153340323104], // titik ke tiga
+      [-0.5092262150351387, 100.78078516250457], // Koordinat Akhir
+    ];
+
+    var polygon = L.polygon(area, { color: "blue" }).addTo(map);
+    polygon.setStyle({ fillOpacity: 0.4 });
+    polygon.addTo(map);
+
+    var marker = L.marker([-0.5054404592593265, 100.77916601470422])
+      .bindPopup(deskripsi_psdku)
+      .addTo(map);
+
+    var area_psdku = [
+      [-0.5062379598610729, 100.77863207397333],
+      [-0.5059067943738756, 100.77851548566281],
+      [-0.5058186121812922, 100.77880249008484],
+      [-0.5056092727021044, 100.77872689869716],
+      [-0.5055128694496418, 100.77899639758346],
+      [-0.5049616153847679, 100.77879978970729],
+      [-0.5046027878309877, 100.77988588326093],
+      [-0.5053560945273341, 100.7801343946417],
+      [-0.5056178162656231, 100.77938333785285],
+      [-0.505747750112508, 100.7793853053706],
+      [-0.5059748597625575, 100.77942300454075],
+    ];
+    var polygon_psdku = L.polygon(area_psdku, { color: "grey" });
+    polygon_psdku.setStyle({ fillOpacity: 0.5 });
+    polygon_psdku.addTo(map);
+  </script>
+  </script>
+</html>
